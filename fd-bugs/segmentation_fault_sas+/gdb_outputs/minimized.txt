@@ -1,0 +1,38 @@
+#0  __GI_raise (sig=sig@entry=6) at ../sysdeps/unix/sysv/linux/raise.c:50
+#1  0x00007ffff77d4859 in __GI_abort () at abort.c:79
+#2  0x00007ffff77d4729 in __assert_fail_base (fmt=0x7ffff796a588 "%s%s%s:%u: %s%sAssertion `%s' failed.\n%n", assertion=0x55555735f226 "pre != post", 
+    file=0x55555735e900 "/home/lucas/bachelor_thesis/fd-versions/downward-release-19.12/src/search/operator_counting/state_equation_constraints.cc", line=41, function=<optimized out>) at assert.c:92
+#3  0x00007ffff77e5f36 in __GI___assert_fail (assertion=assertion@entry=0x55555735f226 "pre != post", file=file@entry=0x55555735e900 "/home/lucas/bachelor_thesis/fd-versions/downward-release-19.12/src/search/operator_counting/state_equation_constraints.cc", 
+    line=line@entry=41, function=function@entry=0x55555735e8a8 "void operator_counting::StateEquationConstraints::build_propositions(const TaskProxy&)") at assert.c:101
+#4  0x000055555583c250 in operator_counting::StateEquationConstraints::build_propositions (this=0x555557d252a0, task_proxy=...) at /usr/include/c++/9/debug/formatter.h:565
+#5  0x000055555583f8af in operator_counting::StateEquationConstraints::initialize_constraints (this=0x555557d252a0, task=std::shared_ptr<class AbstractTask> (use count 4, weak count 0) = {...}, constraints=std::__debug::vector of length 0, capacity 0, infinity=1e+20)
+    at /home/lucas/bachelor_thesis/fd-versions/downward-release-19.12/src/search/operator_counting/state_equation_constraints.cc:76
+#6  0x0000555555845281 in operator_counting::OperatorCountingHeuristic::OperatorCountingHeuristic (this=0x555557d26400, opts=...) at /usr/include/c++/9/bits/shared_ptr_base.h:1020
+#7  0x0000555555846d55 in __gnu_cxx::new_allocator<operator_counting::OperatorCountingHeuristic>::construct<operator_counting::OperatorCountingHeuristic, options::Options&> (this=<optimized out>, __p=0x555557d26400) at /usr/include/c++/9/new:174
+#8  std::allocator_traits<std::allocator<operator_counting::OperatorCountingHeuristic> >::construct<operator_counting::OperatorCountingHeuristic, options::Options&> (__a=..., __p=0x555557d26400) at /usr/include/c++/9/bits/alloc_traits.h:484
+#9  std::_Sp_counted_ptr_inplace<operator_counting::OperatorCountingHeuristic, std::allocator<operator_counting::OperatorCountingHeuristic>, (__gnu_cxx::_Lock_policy)2>::_Sp_counted_ptr_inplace<options::Options&> (__a=..., this=0x555557d263f0)
+    at /usr/include/c++/9/bits/shared_ptr_base.h:548
+#10 std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count<operator_counting::OperatorCountingHeuristic, std::allocator<operator_counting::OperatorCountingHeuristic>, options::Options&> (__a=..., __p=<optimized out>, this=<optimized out>)
+    at /usr/include/c++/9/bits/shared_ptr_base.h:679
+#11 std::__shared_ptr<operator_counting::OperatorCountingHeuristic, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<std::allocator<operator_counting::OperatorCountingHeuristic>, options::Options&> (__tag=..., this=<optimized out>)
+    at /usr/include/c++/9/bits/shared_ptr_base.h:1344
+#12 std::shared_ptr<operator_counting::OperatorCountingHeuristic>::shared_ptr<std::allocator<operator_counting::OperatorCountingHeuristic>, options::Options&> (__tag=..., this=<optimized out>) at /usr/include/c++/9/bits/shared_ptr.h:359
+#13 std::allocate_shared<operator_counting::OperatorCountingHeuristic, std::allocator<operator_counting::OperatorCountingHeuristic>, options::Options&> (__a=...) at /usr/include/c++/9/bits/shared_ptr.h:702
+#14 std::make_shared<operator_counting::OperatorCountingHeuristic, options::Options&> () at /usr/include/c++/9/bits/shared_ptr.h:718
+#15 operator_counting::_parse (parser=...) at /home/lucas/bachelor_thesis/fd-versions/downward-release-19.12/src/search/operator_counting/operator_counting_heuristic.cc:114
+#16 0x0000555555791159 in std::_Function_handler<std::shared_ptr<Evaluator> (options::OptionParser&), std::shared_ptr<Heuristic> (*)(options::OptionParser&)>::_M_invoke(std::_Any_data const&, options::OptionParser&) (__functor=..., __args#0=...)
+    at /usr/include/c++/9/bits/std_function.h:88
+#17 0x0000555555ad91af in std::function<std::shared_ptr<Evaluator> (options::OptionParser&)>::operator()(options::OptionParser&) const (__args#0=..., this=0x7fffffffcd70) at /usr/include/c++/9/bits/std_function.h:683
+#18 options::lookup_in_registry<Evaluator> (parser=...) at /home/lucas/bachelor_thesis/fd-versions/downward-release-19.12/src/search/search_engines/../options/option_parser.h:228
+#19 0x0000555555adea9c in options::TokenParser<std::shared_ptr<Evaluator> >::parse (parser=...) at /usr/include/c++/9/bits/shared_ptr_base.h:1169
+#20 0x0000555555adf0eb in options::OptionParser::add_option<std::shared_ptr<Evaluator> > (this=0x7fffffffd5e0, key="eval", help=..., default_value=..., bounds=...) at /usr/include/c++/9/bits/unique_ptr.h:344
+#21 0x0000555555ae94e8 in plugin_astar::_parse (parser=...) at /usr/include/c++/9/bits/char_traits.h:300
+#22 0x0000555555acd6b6 in std::_Function_handler<std::shared_ptr<SearchEngine> (options::OptionParser&), std::shared_ptr<SearchEngine> (*)(options::OptionParser&)>::_M_invoke(std::_Any_data const&, options::OptionParser&) (__functor=..., __args#0=...)
+    at /usr/include/c++/9/bits/std_function.h:88
+#23 0x0000555555bcb17c in std::function<std::shared_ptr<SearchEngine> (options::OptionParser&)>::operator()(options::OptionParser&) const (__args#0=..., this=0x7fffffffd300) at /usr/include/c++/9/bits/std_function.h:683
+#24 options::lookup_in_registry<SearchEngine> (parser=...) at /home/lucas/bachelor_thesis/fd-versions/downward-release-19.12/src/search/options/option_parser.h:228
+#25 0x0000555555bcc02c in options::TokenParser<std::shared_ptr<SearchEngine> >::parse (parser=...) at /usr/include/c++/9/bits/shared_ptr_base.h:1169
+#26 options::OptionParser::start_parsing<std::shared_ptr<SearchEngine> > (this=0x7fffffffd5e0) at /home/lucas/bachelor_thesis/fd-versions/downward-release-19.12/src/search/options/option_parser.h:277
+#27 parse_cmd_line_aux (args=std::__debug::vector of length 4, capacity 4 = {...}, registry=..., dry_run=false) at /home/lucas/bachelor_thesis/fd-versions/downward-release-19.12/src/search/command_line.cc:66
+#28 0x0000555555bcdcfc in parse_cmd_line (argc=<optimized out>, argv=<optimized out>, registry=..., dry_run=<optimized out>, is_unit_cost=false) at /home/lucas/bachelor_thesis/fd-versions/downward-release-19.12/src/search/command_line.cc:149
+#29 0x0000555555785bcf in main (argc=5, argv=0x7fffffffdbc8) at /home/lucas/bachelor_thesis/fd-versions/downward-release-19.12/src/search/planner.cc:40
