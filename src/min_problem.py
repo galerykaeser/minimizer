@@ -70,6 +70,7 @@ class MinimizationProblem(RunnableProblem):
         self.call_string_manager = CallStringManager(args.problem[0])
         self.characteristic = args.characteristic[0]
         self.parser = self.extract_parser(self.characteristic) if self.characteristic.split(".")[-1] == "py" else None
+        self.output_comparer = self.extract_parser(args.compare_outputs) if args.compare_outputs else None
 
 
 class PDDLMinimizationProblem(MinimizationProblem):
@@ -119,9 +120,18 @@ class PDDLMinimizationProblem(MinimizationProblem):
                         for successor, removed_element in transformer.get_successors(current):
                             num_successors += 1
                             write_PDDL(successor, new_domain_filename, new_problem_filename)
-                            if self.reference_planner is not None:
-                                optional_reference_condition = self.reference_planner.has_characteristic()
-                            if self.has_characteristic() and optional_reference_condition:
+                            continuation_condition = False
+                            if self.reference_planner is None:
+                                continuation_condition = self.has_characteristic()
+                            else:
+                                if self.output_comparer:
+                                    output1 = self.has_characteristic()
+                                    output2 = self.reference_planner.has_characteristic()
+                                    continuation_condition = self.output_comparer.parse([output1, output2])
+                                else:
+                                    continuation_condition = self.has_characteristic() and self.reference_planner.has_characteristic()
+
+                            if continuation_condition:
                                 current = successor
                                 removed_list.append(removed_element)
                                 break  # successor selected by first choice
