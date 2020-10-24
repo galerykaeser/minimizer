@@ -1,0 +1,8 @@
+*.pyc
+.idea
+minimized-domain.pddl
+minimized-problem.pddl
+minimized.sas
+sas_plan
+output.sas
+summary.txt
