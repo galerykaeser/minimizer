@@ -35,7 +35,7 @@ class RunnableProblem:
         combined_process_output = stout + sterr
 
         if self.parser is not None:
-            return self.parser.parse_output_string(combined_process_output)
+            return self.parser.parse(combined_process_output)
         return self.characteristic in combined_process_output
 
     def extract_parser(self, path):
@@ -70,7 +70,7 @@ class MinimizationProblem(RunnableProblem):
         self.call_string_manager = CallStringManager(args.problem[0])
         self.characteristic = args.characteristic[0]
         self.parser = self.extract_parser(self.characteristic) if self.characteristic.split(".")[-1] == "py" else None
-        self.output_comparer = self.extract_parser(args.compare_outputs) if args.compare_outputs else None
+        self.output_comparer = self.extract_parser(args.compare_outputs[0]) if args.compare_outputs else None
 
 
 class PDDLMinimizationProblem(MinimizationProblem):
