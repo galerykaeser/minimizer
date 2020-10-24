@@ -15,6 +15,10 @@ def parse_args():
                                 "implements parser interface", required=True)
     argparser.add_argument("--delete", help="task element to be deleted", metavar="OPTION", nargs='+',
                            required=True)
+    argparser.add_argument("--compare-outputs", metavar="COMPARER", nargs=1, help="implementation of parserbase "
+                                                                                  "interface accepting two strings "
+                                                                                  "and returning a boolean",
+                           required=False)
     argparser.add_argument("--falsity",
                            help="flag if atoms containing the deleted predicate should be replaced with falsity",
                            required=False, action="store_true")
