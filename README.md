@@ -1,4 +1,6 @@
 # Planning Task Minimizer
+**Note:** This was the original source of the project which is now called [Machetli](https://github.com/aibasel/machetli).
+
 The source code of the minimizer can be found in the ```src/``` directory.
 
 ## Manual
